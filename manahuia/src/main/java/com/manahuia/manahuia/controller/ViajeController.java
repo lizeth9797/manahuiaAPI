@@ -1,6 +1,6 @@
 package com.manahuia.manahuia.controller;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -28,14 +28,14 @@ public class ViajeController {
 	
 	//GET all
 	@GetMapping
-	public ArrayList<Viaje> getViajes(){
+	public List<Viaje> getViajes(){
 		return viajeService.getAllViajes();
 	}
 	
 	//Get by ID
 	@GetMapping (path= "{viajeId}")
-	public Viaje getViaje(@PathVariable("viajeId") int viajeId) {
-		return viajeService.getViaje(viajeId);
+	public Viaje getViaje(@PathVariable("viajeId") Long id) {
+		return viajeService.getViaje(id);
 	}
 	
 	//POST 
@@ -46,16 +46,14 @@ public class ViajeController {
 	
 	//DELETE
 	@DeleteMapping(path="{viajeId}")
-	public Viaje deleteViaje(@PathVariable("viajeId") int viajeId) { 
+	public Viaje deleteViaje(@PathVariable("viajeId") Long viajeId) { 
 		return viajeService.deleteViaje(viajeId);
 	}
 
 	//PUT
 	@PutMapping(path="{viajeId}")
-	public Viaje updateViaje(@PathVariable("viajeId") int viajeId,
+	public Viaje updateViaje(@PathVariable("viajeId") Long viajeId,
 			@RequestBody Viaje viaje) {
-		return viajeService.updateViaje(viajeId, viaje.getNombre_destino(), viaje.getFecha_inicio(), viaje.getFecha_final(),viaje.getDuracion_dias(),viaje.getIncluye(), viaje.getDescripcion(), Double.valueOf(viaje.getPrecio()), viaje.getImagenes(), viaje.getStock()); 
+		return viajeService.updateViaje(viajeId, viaje.getNombreDestino(), viaje.getFechaInicio(), viaje.getFechaFinal(),viaje.getDuracionDias(),viaje.getIncluye(), viaje.getDescripcion(), Double.valueOf(viaje.getPrecio()), viaje.getImagenes(), viaje.getStock()); 
 	}
-	
-	
 }

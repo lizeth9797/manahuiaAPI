@@ -1,73 +1,87 @@
 package com.manahuia.manahuia.model;
 
-public class Viaje {
-	private int id;
-	private String nombre_destino;
-	private String fecha_inicio; //YYYY-MM-DD
-	private String fecha_final;  //YYYY-MM-DD
-	private int duracion_dias;
-	private String incluye;
-	private String descripcion;
-	private double precio;
-	private String imagenes;
-	private int stock;
-	private static int total=0;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Entity
+@Table(name="viajes") 
+public class Viaje {
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Long id;
+	@Column(nullable=false, unique=true)
+	private String nombreDestino;
+	@Column(nullable=false)
+	private String fechaInicio; //YYYY-MM-DD
+	@Column(nullable=false)
+	private String fechaFinal;  //YYYY-MM-DD
+	@Column(nullable=false)
+	private Long duracionDias;
+	@Column(nullable=false)
+	private String incluye;
+	@Column(nullable=false)
+	private String descripcion;
+	@Column(nullable=false)
+	private double precio;
+	@Column(nullable=false)
+	private String imagenes;
+	@Column(nullable=false)
+	private Long stock;
 	
-	public Viaje(String nombre_destino, String fecha_inicio, String fecha_final, int duracion_dias, String incluye,
-			String descripcion, double precio, String imagenes, int stock) {
+	public Viaje(String nombreDestino, String fechaInicio, String fechaFinal, Long duracionDias, String incluye,
+			String descripcion, double precio, String imagenes, Long stock) {
 		super();
-		this.nombre_destino = nombre_destino;
-		this.fecha_inicio = fecha_inicio;
-		this.fecha_final = fecha_final;
-		this.duracion_dias = duracion_dias;
+		this.nombreDestino = nombreDestino;
+		this.fechaInicio = fechaInicio;
+		this.fechaFinal = fechaFinal;
+		this.duracionDias = duracionDias;
 		this.incluye = incluye;
 		this.descripcion = descripcion;
 		this.precio = precio;
 		this.imagenes = imagenes;
 		this.stock = stock;
-		Viaje.total++;
-		id=Viaje.total;
 	}
 	
 	public Viaje() {
-		Viaje.total++;
-		id=Viaje.total;
 	}
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
-	public String getNombre_destino() {
-		return nombre_destino;
+	public String getNombreDestino() {
+		return nombreDestino;
 	}
 
-	public void setNombre_destino(String nombre_destino) {
-		this.nombre_destino = nombre_destino;
+	public void setNombreDestino(String nombreDestino) {
+		this.nombreDestino = nombreDestino;
 	}
 
-	public String getFecha_inicio() {
-		return fecha_inicio;
+	public String getFechaInicio() {
+		return fechaInicio;
 	}
 
-	public void setFecha_inicio(String fecha_inicio) {
-		this.fecha_inicio = fecha_inicio;
+	public void setFechaInicio(String fechaInicio) {
+		this.fechaInicio = fechaInicio;
 	}
 
-	public String getFecha_final() {
-		return fecha_final;
+	public String getFechaFinal() {
+		return fechaFinal;
 	}
 
-	public void setFecha_final(String fecha_final) {
-		this.fecha_final = fecha_final;
+	public void setFechaFinal(String fechaFinal) {
+		this.fechaFinal = fechaFinal;
 	}
 
-	public int getDuracion_dias() {
-		return duracion_dias;
+	public Long getDuracionDias() {
+		return duracionDias;
 	}
 
-	public void setDuracion_dias(int duracion_dias) {
-		this.duracion_dias = duracion_dias;
+	public void setDuracionDias(Long duracionDias) {
+		this.duracionDias = duracionDias;
 	}
 
 	public String getIncluye() {
@@ -102,18 +116,18 @@ public class Viaje {
 		this.imagenes = imagenes;
 	}
 
-	public int getStock() {
+	public Long getStock() {
 		return stock;
 	}
 
-	public void setStock(int stock) {
+	public void setStock(Long stock) {
 		this.stock = stock;
 	}
 
 	@Override
 	public String toString() {
-		return "Viaje [id=" + id + ", nombre_destino=" + nombre_destino + ", fecha_inicio=" + fecha_inicio
-				+ ", fecha_final=" + fecha_final + ", duracion_dias=" + duracion_dias + ", incluye=" + incluye
+		return "Viaje [id=" + id + ", nombreDestino=" + nombreDestino + ", fechaInicio=" + fechaInicio
+				+ ", fechaFinal=" + fechaFinal + ", duracionDias=" + duracionDias + ", incluye=" + incluye
 				+ ", descripcion=" + descripcion + ", precio=" + precio + ", imagenes=" + imagenes + ", stock=" + stock
 				+ "]";
 	}

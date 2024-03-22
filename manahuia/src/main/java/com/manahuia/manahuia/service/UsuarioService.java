@@ -1,42 +1,57 @@
 package com.manahuia.manahuia.service;
 
-import java.util.ArrayList;
+import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.manahuia.manahuia.dto.ChangePassword;
 import com.manahuia.manahuia.model.Usuario;
+import com.manahuia.manahuia.repository.UsuarioRepository;
 
 @Service
 public class UsuarioService {
-	public final ArrayList<Usuario> list = new ArrayList();
-	public UsuarioService() {
-		list.add( new Usuario("Abigail Arizmend","abi21@gmail.com", "Par4gua$", "5518947544",1));
-		list.add( new Usuario("Lizeth Ortiz","liz@gmail.com", "Par4gua$", "5518947544",0));
-		list.add( new Usuario("Dita Fernández","dita@gmail.com", "Par4gua$", "5518947544",0));
+	
+	public final UsuarioRepository usuarioRepository;
+	@Autowired
+	public UsuarioService(UsuarioRepository usuarioRepository) {
+		this.usuarioRepository=usuarioRepository;
+	}	
+	
+	public List<Usuario> getAllUsuarios() {
+		return usuarioRepository.findAll();
 	}
-	public ArrayList<Usuario> getAllUsuarios() {
-		return list;
+	
+	public Usuario getUsuario(Long usuarioId) {
+		return usuarioRepository.findById(usuarioId).orElseThrow(
+				()->new IllegalArgumentException("El usuario con el id ["+usuarioId+"] no existe"));
 	}
-	public Usuario getUsuario(int usuarioId) {
-		Usuario tempUsuario=null;
-		for (Usuario usuario : list) {
-			if(usuario.getId()==usuarioId) {
-				tempUsuario=usuario;
-				break;
-			}
-		}
-		return tempUsuario;
-	}
+		
 	public Usuario addUsuario(Usuario usuario) {
 		Usuario tempUsuario=null;
-		if(list.add(usuario)) {
-			tempUsuario=usuario;
-		}
-		return tempUsuario;
+		if(usuarioRepository.findByCorreo(usuario.getCorreo()).isEmpty()){
+			tempUsuario = usuarioRepository.save(usuario);
+		 }else{
+		 		System.out.println("El usuario con el email ["+usuario.getCorreo()+"]");
+		 }
+		return tempUsuario;	
 	}
 	
-	
-	
+	public Usuario updateUsuario(Long usuarioId, ChangePassword changePassword) {
+		Usuario tempUsuario=null;
+		if(usuarioRepository.existsById(usuarioId)) { 
+			tempUsuario=usuarioRepository.findById(usuarioId).get(); 
+			if(tempUsuario.getPassword().equals(changePassword.getPassword())) {
+				tempUsuario.setPassword(changePassword.getNpassword());
+				usuarioRepository.save(tempUsuario);
+			}else {
+				System.out.println("El password del usuario con ID["+
+						tempUsuario.getId()+"] no coincide");
+				tempUsuario=null;
+			}
+		}//if existsById
+		return tempUsuario;
+	}
 }
 	
 	
