@@ -1,33 +1,43 @@
 package com.manahuia.manahuia.model;
 
-public class Usuario {
-	private int id;
-	private String nombre;
-	private String correo;
-	private String password;
-	private String telefono;
-	private int tipo_usuario;
-	private static int total=0;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Entity
+@Table(name="usuarios") 
+public class Usuario {
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Long id;
+	@Column(nullable=false)
+	private String nombre;
+	@Column(nullable=false)
+	private String correo;
+	@Column(nullable=false)
+	private String password;
+	@Column(nullable=false)
+	private String telefono;
+	@Column(nullable=false)
+	private Long tipo_usuario;
 
 	public Usuario(String nombre, String correo, String password, String telefono,
-			int tipo_usuario) {
+			Long tipo_usuario) {
 		super();
 		this.nombre = nombre;
 		this.correo = correo;
 		this.password = password;
 		this.telefono = telefono;
 		this.tipo_usuario = tipo_usuario;
-		Usuario.total++;
-		id=Usuario.total;
 	}	
 	
 	public Usuario() {
-		Usuario.total++;
-		id=Usuario.total;	
 	}
 	
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 	
@@ -63,11 +73,11 @@ public class Usuario {
 		this.telefono = telefono;
 	}
 
-	public int getTipo_usuario() {
+	public Long getTipo_usuario() {
 		return tipo_usuario;
 	}
 
-	public void setTipo_usuario(int tipo_usuario) {
+	public void setTipo_usuario(Long tipo_usuario) {
 		this.tipo_usuario = tipo_usuario;
 	}
 
