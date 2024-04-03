@@ -3,6 +3,7 @@ package com.manahuia.manahuia.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,6 +16,7 @@ import com.manahuia.manahuia.dto.ChangePassword;
 import com.manahuia.manahuia.model.Usuario;
 import com.manahuia.manahuia.service.UsuarioService;
 
+@CrossOrigin(origins="https://lizeth9797.github.io/manahuia/")
 @RestController
 @RequestMapping(path="/api/usuarios/") //http://localhost:8080/api/usuario/
 public class UsuarioController {

@@ -2,6 +2,7 @@ package com.manahuia.manahuia.controller;
 
 import javax.servlet.ServletException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +17,7 @@ import com.manahuia.manahuia.service.UsuarioService;
 import com.manahuia.manahuia.config.JwtFilter;
 import com.manahuia.manahuia.dto.Token;
 
+@CrossOrigin(origins="https://lizeth9797.github.io/manahuia/")
 @RestController
 @RequestMapping(path="/api/login/") //http://localhost:8080/api/login/
 public class LoginController {

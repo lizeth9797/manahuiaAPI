@@ -3,6 +3,7 @@ package com.manahuia.manahuia.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.manahuia.manahuia.model.Viaje;
 import com.manahuia.manahuia.service.ViajeService;
 
+@CrossOrigin(origins="https://lizeth9797.github.io/manahuia/")
 @RestController
 @RequestMapping(path="/api/viajes/")  //http://localhost:8080/api/viajes/
 public class ViajeController {
