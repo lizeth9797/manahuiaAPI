@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">0.001s</div>
+<div class="counter">0.008s</div>
 <p>duration</p>
 </div>
 </td>
@@ -195,14 +195,15 @@ Caused by: org.hibernate.exception.JDBCConnectionException: Unable to open JDBC 
 	at app//org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:113)
 	at app//org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:99)
 	at app//org.hibernate.resource.transaction.backend.jdbc.internal.DdlTransactionIsolatorNonJtaImpl.getIsolatedConnection(DdlTransactionIsolatorNonJtaImpl.java:71)
-	at app//org.hibernate.tool.schema.internal.exec.ImprovedExtractionContextImpl.getJdbcConnection(ImprovedExtractionContextImpl.java:63)
-	at app//org.hibernate.tool.schema.extract.spi.ExtractionContext.getQueryResults(ExtractionContext.java:43)
-	at app//org.hibernate.tool.schema.extract.internal.SequenceInformationExtractorLegacyImpl.extractMetadata(SequenceInformationExtractorLegacyImpl.java:39)
-	at app//org.hibernate.tool.schema.extract.internal.DatabaseInformationImpl.initializeSequences(DatabaseInformationImpl.java:66)
-	at app//org.hibernate.tool.schema.extract.internal.DatabaseInformationImpl.&lt;init&gt;(DatabaseInformationImpl.java:60)
-	at app//org.hibernate.tool.schema.internal.Helper.buildDatabaseInformation(Helper.java:183)
-	at app//org.hibernate.tool.schema.internal.AbstractSchemaValidator.doValidation(AbstractSchemaValidator.java:68)
-	at app//org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:204)
+	at app//org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.jdbcStatement(GenerationTargetToDatabase.java:77)
+	at app//org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:53)
+	at app//org.hibernate.tool.schema.internal.SchemaDropperImpl.applySqlString(SchemaDropperImpl.java:387)
+	at app//org.hibernate.tool.schema.internal.SchemaDropperImpl.applySqlStrings(SchemaDropperImpl.java:371)
+	at app//org.hibernate.tool.schema.internal.SchemaDropperImpl.dropFromMetadata(SchemaDropperImpl.java:246)
+	at app//org.hibernate.tool.schema.internal.SchemaDropperImpl.performDrop(SchemaDropperImpl.java:156)
+	at app//org.hibernate.tool.schema.internal.SchemaDropperImpl.doDrop(SchemaDropperImpl.java:128)
+	at app//org.hibernate.tool.schema.internal.SchemaDropperImpl.doDrop(SchemaDropperImpl.java:114)
+	at app//org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:157)
 	at app//org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:85)
 	at app//org.hibernate.internal.SessionFactoryImpl.&lt;init&gt;(SessionFactoryImpl.java:335)
 	at app//org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:471)
@@ -211,7 +212,7 @@ Caused by: org.hibernate.exception.JDBCConnectionException: Unable to open JDBC 
 	at app//org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:365)
 	at app//org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:409)
 	... 105 more
-Caused by: org.postgresql.util.PSQLException: The connection attempt failed.
+Caused by: org.postgresql.util.PSQLException: El intento de conexión falló.
 	at app//org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:331)
 	at app//org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:49)
 	at app//org.postgresql.jdbc.PgConnection.&lt;init&gt;(PgConnection.java:223)
@@ -227,7 +228,7 @@ Caused by: org.postgresql.util.PSQLException: The connection attempt failed.
 	at app//org.hibernate.engine.jdbc.connections.internal.DatasourceConnectionProviderImpl.getConnection(DatasourceConnectionProviderImpl.java:122)
 	at app//org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess.obtainConnection(JdbcEnvironmentInitiator.java:181)
 	at app//org.hibernate.resource.transaction.backend.jdbc.internal.DdlTransactionIsolatorNonJtaImpl.getIsolatedConnection(DdlTransactionIsolatorNonJtaImpl.java:44)
-	... 120 more
+	... 121 more
 Caused by: java.net.UnknownHostException: ${PROD_DB_HOST}
 	at java.base/sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:572)
 	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:327)
@@ -236,7 +237,7 @@ Caused by: java.net.UnknownHostException: ${PROD_DB_HOST}
 	at org.postgresql.core.PGStream.&lt;init&gt;(PGStream.java:98)
 	at org.postgresql.core.v3.ConnectionFactoryImpl.tryConnect(ConnectionFactoryImpl.java:109)
 	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:235)
-	... 134 more
+	... 135 more
 </pre>
 </span>
 </div>
@@ -253,7 +254,7 @@ Caused by: java.net.UnknownHostException: ${PROD_DB_HOST}
 </thead>
 <tr>
 <td class="failures">contextLoads()</td>
-<td class="failures">0.001s</td>
+<td class="failures">0.008s</td>
 <td class="failures">failed</td>
 </tr>
 </table>
@@ -261,21 +262,21 @@ Caused by: java.net.UnknownHostException: ${PROD_DB_HOST}
 <div id="tab2" class="tab">
 <h2>Standard output</h2>
 <span class="code">
-<pre>19:52:17.605 [Test worker] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating CacheAwareContextLoaderDelegate from class [org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate]
-19:52:17.612 [Test worker] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating BootstrapContext using constructor [public org.springframework.test.context.support.DefaultBootstrapContext(java.lang.Class,org.springframework.test.context.CacheAwareContextLoaderDelegate)]
-19:52:17.628 [Test worker] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating TestContextBootstrapper for test class [com.manahuia.manahuia.ManahuiaApplicationTests] from class [org.springframework.boot.test.context.SpringBootTestContextBootstrapper]
-19:52:17.635 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Neither @ContextConfiguration nor @ContextHierarchy found for test class [com.manahuia.manahuia.ManahuiaApplicationTests], using SpringBootContextLoader
-19:52:17.639 [Test worker] DEBUG org.springframework.test.context.support.AbstractContextLoader - Did not detect default resource location for test class [com.manahuia.manahuia.ManahuiaApplicationTests]: class path resource [com/manahuia/manahuia/ManahuiaApplicationTests-context.xml] does not exist
-19:52:17.639 [Test worker] DEBUG org.springframework.test.context.support.AbstractContextLoader - Did not detect default resource location for test class [com.manahuia.manahuia.ManahuiaApplicationTests]: class path resource [com/manahuia/manahuia/ManahuiaApplicationTestsContext.groovy] does not exist
-19:52:17.639 [Test worker] INFO org.springframework.test.context.support.AbstractContextLoader - Could not detect default resource locations for test class [com.manahuia.manahuia.ManahuiaApplicationTests]: no resource found for suffixes {-context.xml, Context.groovy}.
-19:52:17.640 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.manahuia.manahuia.ManahuiaApplicationTests]: ManahuiaApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-19:52:17.658 [Test worker] DEBUG org.springframework.test.context.support.ActiveProfilesUtils - Could not find an 'annotation declaring class' for annotation type [org.springframework.test.context.ActiveProfiles] and class [com.manahuia.manahuia.ManahuiaApplicationTests]
-19:52:17.684 [Test worker] DEBUG org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider - Identified candidate component class: file [/Users/karinamunoz/git/ch37/manahuia/build/classes/java/main/com/manahuia/manahuia/ManahuiaApplication.class]
-19:52:17.684 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.manahuia.manahuia.ManahuiaApplication for test class com.manahuia.manahuia.ManahuiaApplicationTests
-19:52:17.732 [Test worker] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper - @TestExecutionListeners is not present for class [com.manahuia.manahuia.ManahuiaApplicationTests]: using defaults.
-19:52:17.732 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
-19:52:17.742 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@610db97e, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@6f0628de, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@3fabf088, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@1e392345, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@12f3afb5, org.springframework.test.context.support.DirtiesContextTestExecutionListener@4ced35ed, org.springframework.test.context.transaction.TransactionalTestExecutionListener@2c22a348, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@7bd69e82, org.springframework.test.context.event.EventPublishingTestExecutionListener@74d7184a, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@51b01960, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@6831d8fd, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@27dc79f7, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@6b85300e, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener@3aaf4f07, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@5cbf9e9f]
-19:52:17.744 [Test worker] DEBUG org.springframework.test.context.support.AbstractDirtiesContextTestExecutionListener - Before test class: context [DefaultTestContext@24b52d3e testClass = ManahuiaApplicationTests, testInstance = [null], testMethod = [null], testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@15deb1dc testClass = ManahuiaApplicationTests, locations = '{}', classes = '{class com.manahuia.manahuia.ManahuiaApplication}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.actuate.metrics.MetricsExportContextCustomizerFactory$DisableMetricExportContextCustomizer@2a3c96e3, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@1fcb4808, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@e077866, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@1c7fd41f, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@1fdfafd2, org.springframework.boot.test.context.SpringBootTestArgs@1, org.springframework.boot.test.context.SpringBootTestWebEnvironment@44be0077], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.web.ServletTestExecutionListener.activateListener' -&gt; true]], class annotated with @DirtiesContext [false] with mode [null].
+<pre>23:00:57.478 [Test worker] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating CacheAwareContextLoaderDelegate from class [org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate]
+23:00:57.510 [Test worker] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating BootstrapContext using constructor [public org.springframework.test.context.support.DefaultBootstrapContext(java.lang.Class,org.springframework.test.context.CacheAwareContextLoaderDelegate)]
+23:00:57.581 [Test worker] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating TestContextBootstrapper for test class [com.manahuia.manahuia.ManahuiaApplicationTests] from class [org.springframework.boot.test.context.SpringBootTestContextBootstrapper]
+23:00:57.610 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Neither @ContextConfiguration nor @ContextHierarchy found for test class [com.manahuia.manahuia.ManahuiaApplicationTests], using SpringBootContextLoader
+23:00:57.617 [Test worker] DEBUG org.springframework.test.context.support.AbstractContextLoader - Did not detect default resource location for test class [com.manahuia.manahuia.ManahuiaApplicationTests]: class path resource [com/manahuia/manahuia/ManahuiaApplicationTests-context.xml] does not exist
+23:00:57.618 [Test worker] DEBUG org.springframework.test.context.support.AbstractContextLoader - Did not detect default resource location for test class [com.manahuia.manahuia.ManahuiaApplicationTests]: class path resource [com/manahuia/manahuia/ManahuiaApplicationTestsContext.groovy] does not exist
+23:00:57.619 [Test worker] INFO org.springframework.test.context.support.AbstractContextLoader - Could not detect default resource locations for test class [com.manahuia.manahuia.ManahuiaApplicationTests]: no resource found for suffixes {-context.xml, Context.groovy}.
+23:00:57.621 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.manahuia.manahuia.ManahuiaApplicationTests]: ManahuiaApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+23:00:57.712 [Test worker] DEBUG org.springframework.test.context.support.ActiveProfilesUtils - Could not find an 'annotation declaring class' for annotation type [org.springframework.test.context.ActiveProfiles] and class [com.manahuia.manahuia.ManahuiaApplicationTests]
+23:00:57.834 [Test worker] DEBUG org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider - Identified candidate component class: file [C:\Users\dfern\Documents\Generation\Proyecto integrador\manahuiaAPI\build\classes\java\main\com\manahuia\manahuia\ManahuiaApplication.class]
+23:00:57.837 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.manahuia.manahuia.ManahuiaApplication for test class com.manahuia.manahuia.ManahuiaApplicationTests
+23:00:58.049 [Test worker] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper - @TestExecutionListeners is not present for class [com.manahuia.manahuia.ManahuiaApplicationTests]: using defaults.
+23:00:58.050 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+23:00:58.094 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@10567255, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@e362c57, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@1c4ee95c, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@79c4715d, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@5aa360ea, org.springframework.test.context.support.DirtiesContextTestExecutionListener@6548bb7d, org.springframework.test.context.transaction.TransactionalTestExecutionListener@e27ba81, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@54336c81, org.springframework.test.context.event.EventPublishingTestExecutionListener@1556f2dd, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@35e52059, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@62577d6, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@49bd54f7, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@6b5f8707, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener@772485dd, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@5a12c728]
+23:00:58.102 [Test worker] DEBUG org.springframework.test.context.support.AbstractDirtiesContextTestExecutionListener - Before test class: context [DefaultTestContext@2e27d72f testClass = ManahuiaApplicationTests, testInstance = [null], testMethod = [null], testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@c0b41d6 testClass = ManahuiaApplicationTests, locations = '{}', classes = '{class com.manahuia.manahuia.ManahuiaApplication}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.actuate.metrics.MetricsExportContextCustomizerFactory$DisableMetricExportContextCustomizer@36546a22, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@652a7737, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@1e1d3956, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@f0e995e, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@3829ac1, org.springframework.boot.test.context.SpringBootTestArgs@1, org.springframework.boot.test.context.SpringBootTestWebEnvironment@404bbcbd], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.web.ServletTestExecutionListener.activateListener' -&gt; true]], class annotated with @DirtiesContext [false] with mode [null].
 
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -285,17 +286,17 @@ Caused by: java.net.UnknownHostException: ${PROD_DB_HOST}
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::               (v2.7.15)
 
-2024-04-03 19:52:17.891  INFO 11347 --- [    Test worker] c.m.manahuia.ManahuiaApplicationTests    : Starting ManahuiaApplicationTests using Java 17.0.10 on 192.168.0.222 with PID 11347 (started by karinamunoz in /Users/karinamunoz/git/ch37/manahuia)
-2024-04-03 19:52:17.892  INFO 11347 --- [    Test worker] c.m.manahuia.ManahuiaApplicationTests    : No active profile set, falling back to 1 default profile: &quot;default&quot;
-2024-04-03 19:52:18.186  INFO 11347 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-04-03 19:52:18.218  INFO 11347 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 29 ms. Found 3 JPA repository interfaces.
-2024-04-03 19:52:18.473  INFO 11347 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-04-03 19:52:18.492  INFO 11347 --- [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.15.Final
-2024-04-03 19:52:18.564  INFO 11347 --- [    Test worker] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
-2024-04-03 19:52:18.603  INFO 11347 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2024-04-03 19:52:19.672 ERROR 11347 --- [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Exception during pool initialization.
+2024-04-03 23:00:58.805  INFO 2268 --- [    Test worker] c.m.manahuia.ManahuiaApplicationTests    : Starting ManahuiaApplicationTests using Java 17.0.9 on DESKTOP-N7P5M4P with PID 2268 (started by dfern in C:\Users\dfern\Documents\Generation\Proyecto integrador\manahuiaAPI)
+2024-04-03 23:00:58.807  INFO 2268 --- [    Test worker] c.m.manahuia.ManahuiaApplicationTests    : No active profile set, falling back to 1 default profile: &quot;default&quot;
+2024-04-03 23:01:00.370  INFO 2268 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-04-03 23:01:00.542  INFO 2268 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 151 ms. Found 3 JPA repository interfaces.
+2024-04-03 23:01:02.013  INFO 2268 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-04-03 23:01:02.186  INFO 2268 --- [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.15.Final
+2024-04-03 23:01:02.599  INFO 2268 --- [    Test worker] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2024-04-03 23:01:02.888  INFO 2268 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-04-03 23:01:04.020 ERROR 2268 --- [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Exception during pool initialization.
 
-org.postgresql.util.PSQLException: The connection attempt failed.
+org.postgresql.util.PSQLException: El intento de conexión falló.
 	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:331) ~[postgresql-42.3.8.jar:42.3.8]
 	at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:49) ~[postgresql-42.3.8.jar:42.3.8]
 	at org.postgresql.jdbc.PgConnection.&lt;init&gt;(PgConnection.java:223) ~[postgresql-42.3.8.jar:42.3.8]
@@ -442,9 +443,9 @@ Caused by: java.net.UnknownHostException: ${PROD_DB_HOST}
 	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:235) ~[postgresql-42.3.8.jar:42.3.8]
 	... 135 common frames omitted
 
-2024-04-03 19:52:19.683  WARN 11347 --- [    Test worker] o.h.e.j.e.i.JdbcEnvironmentInitiator     : HHH000342: Could not obtain connection to query metadata
+2024-04-03 23:01:04.038  WARN 2268 --- [    Test worker] o.h.e.j.e.i.JdbcEnvironmentInitiator     : HHH000342: Could not obtain connection to query metadata
 
-org.postgresql.util.PSQLException: The connection attempt failed.
+org.postgresql.util.PSQLException: El intento de conexión falló.
 	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:331) ~[postgresql-42.3.8.jar:42.3.8]
 	at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:49) ~[postgresql-42.3.8.jar:42.3.8]
 	at org.postgresql.jdbc.PgConnection.&lt;init&gt;(PgConnection.java:223) ~[postgresql-42.3.8.jar:42.3.8]
@@ -591,11 +592,11 @@ Caused by: java.net.UnknownHostException: ${PROD_DB_HOST}
 	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:235) ~[postgresql-42.3.8.jar:42.3.8]
 	... 135 common frames omitted
 
-2024-04-03 19:52:19.695  INFO 11347 --- [    Test worker] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
-2024-04-03 19:52:19.971  INFO 11347 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2024-04-03 19:52:20.976 ERROR 11347 --- [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Exception during pool initialization.
+2024-04-03 23:01:04.079  INFO 2268 --- [    Test worker] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+2024-04-03 23:01:05.090  INFO 2268 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-04-03 23:01:06.101 ERROR 2268 --- [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Exception during pool initialization.
 
-org.postgresql.util.PSQLException: The connection attempt failed.
+org.postgresql.util.PSQLException: El intento de conexión falló.
 	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:331) ~[postgresql-42.3.8.jar:42.3.8]
 	at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:49) ~[postgresql-42.3.8.jar:42.3.8]
 	at org.postgresql.jdbc.PgConnection.&lt;init&gt;(PgConnection.java:223) ~[postgresql-42.3.8.jar:42.3.8]
@@ -611,14 +612,15 @@ org.postgresql.util.PSQLException: The connection attempt failed.
 	at org.hibernate.engine.jdbc.connections.internal.DatasourceConnectionProviderImpl.getConnection(DatasourceConnectionProviderImpl.java:122) ~[hibernate-core-5.6.15.Final.jar:5.6.15.Final]
 	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess.obtainConnection(JdbcEnvironmentInitiator.java:181) ~[hibernate-core-5.6.15.Final.jar:5.6.15.Final]
 	at org.hibernate.resource.transaction.backend.jdbc.internal.DdlTransactionIsolatorNonJtaImpl.getIsolatedConnection(DdlTransactionIsolatorNonJtaImpl.java:44) ~[hibernate-core-5.6.15.Final.jar:5.6.15.Final]
-	at org.hibernate.tool.schema.internal.exec.ImprovedExtractionContextImpl.getJdbcConnection(ImprovedExtractionContextImpl.java:63) ~[hibernate-core-5.6.15.Final.jar:5.6.15.Final]
-	at org.hibernate.tool.schema.extract.spi.ExtractionContext.getQueryResults(ExtractionContext.java:43) ~[hibernate-core-5.6.15.Final.jar:5.6.15.Final]
-	at org.hibernate.tool.schema.extract.internal.SequenceInformationExtractorLegacyImpl.extractMetadata(SequenceInformationExtractorLegacyImpl.java:39) ~[hibernate-core-5.6.15.Final.jar:5.6.15.Final]
-	at org.hibernate.tool.schema.extract.internal.DatabaseInformationImpl.initializeSequences(DatabaseInformationImpl.java:66) ~[hibernate-core-5.6.15.Final.jar:5.6.15.Final]
-	at org.hibernate.tool.schema.extract.internal.DatabaseInformationImpl.&lt;init&gt;(DatabaseInformationImpl.java:60) ~[hibernate-core-5.6.15.Final.jar:5.6.15.Final]
-	at org.hibernate.tool.schema.internal.Helper.buildDatabaseInformation(Helper.java:183) ~[hibernate-core-5.6.15.Final.jar:5.6.15.Final]
-	at org.hibernate.tool.schema.internal.AbstractSchemaValidator.doValidation(AbstractSchemaValidator.java:68) ~[hibernate-core-5.6.15.Final.jar:5.6.15.Final]
-	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:204) ~[hibernate-core-5.6.15.Final.jar:5.6.15.Final]
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.jdbcStatement(GenerationTargetToDatabase.java:77) ~[hibernate-core-5.6.15.Final.jar:5.6.15.Final]
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:53) ~[hibernate-core-5.6.15.Final.jar:5.6.15.Final]
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.applySqlString(SchemaDropperImpl.java:387) ~[hibernate-core-5.6.15.Final.jar:5.6.15.Final]
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.applySqlStrings(SchemaDropperImpl.java:371) ~[hibernate-core-5.6.15.Final.jar:5.6.15.Final]
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.dropFromMetadata(SchemaDropperImpl.java:246) ~[hibernate-core-5.6.15.Final.jar:5.6.15.Final]
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.performDrop(SchemaDropperImpl.java:156) ~[hibernate-core-5.6.15.Final.jar:5.6.15.Final]
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.doDrop(SchemaDropperImpl.java:128) ~[hibernate-core-5.6.15.Final.jar:5.6.15.Final]
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.doDrop(SchemaDropperImpl.java:114) ~[hibernate-core-5.6.15.Final.jar:5.6.15.Final]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:157) ~[hibernate-core-5.6.15.Final.jar:5.6.15.Final]
 	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:85) ~[hibernate-core-5.6.15.Final.jar:5.6.15.Final]
 	at org.hibernate.internal.SessionFactoryImpl.&lt;init&gt;(SessionFactoryImpl.java:335) ~[hibernate-core-5.6.15.Final.jar:5.6.15.Final]
 	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:471) ~[hibernate-core-5.6.15.Final.jar:5.6.15.Final]
@@ -739,16 +741,16 @@ Caused by: java.net.UnknownHostException: ${PROD_DB_HOST}
 	at org.postgresql.core.PGStream.&lt;init&gt;(PGStream.java:98) ~[postgresql-42.3.8.jar:42.3.8]
 	at org.postgresql.core.v3.ConnectionFactoryImpl.tryConnect(ConnectionFactoryImpl.java:109) ~[postgresql-42.3.8.jar:42.3.8]
 	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:235) ~[postgresql-42.3.8.jar:42.3.8]
-	... 134 common frames omitted
+	... 135 common frames omitted
 
-2024-04-03 19:52:20.981  WARN 11347 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 0, SQLState: 08001
-2024-04-03 19:52:20.982 ERROR 11347 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : The connection attempt failed.
-2024-04-03 19:52:20.985 ERROR 11347 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Failed to initialize JPA EntityManagerFactory: [PersistenceUnit: default] Unable to build Hibernate SessionFactory; nested exception is org.hibernate.exception.JDBCConnectionException: Unable to open JDBC Connection for DDL execution
-2024-04-03 19:52:20.986  WARN 11347 --- [    Test worker] o.s.w.c.s.GenericWebApplicationContext   : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Invocation of init method failed; nested exception is javax.persistence.PersistenceException: [PersistenceUnit: default] Unable to build Hibernate SessionFactory; nested exception is org.hibernate.exception.JDBCConnectionException: Unable to open JDBC Connection for DDL execution
-2024-04-03 19:52:20.993  INFO 11347 --- [    Test worker] ConditionEvaluationReportLoggingListener : 
+2024-04-03 23:01:06.106  WARN 2268 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 0, SQLState: 08001
+2024-04-03 23:01:06.106 ERROR 2268 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : El intento de conexión falló.
+2024-04-03 23:01:06.124 ERROR 2268 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Failed to initialize JPA EntityManagerFactory: [PersistenceUnit: default] Unable to build Hibernate SessionFactory; nested exception is org.hibernate.exception.JDBCConnectionException: Unable to open JDBC Connection for DDL execution
+2024-04-03 23:01:06.125  WARN 2268 --- [    Test worker] o.s.w.c.s.GenericWebApplicationContext   : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Invocation of init method failed; nested exception is javax.persistence.PersistenceException: [PersistenceUnit: default] Unable to build Hibernate SessionFactory; nested exception is org.hibernate.exception.JDBCConnectionException: Unable to open JDBC Connection for DDL execution
+2024-04-03 23:01:06.140  INFO 2268 --- [    Test worker] ConditionEvaluationReportLoggingListener : 
 
 Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
-2024-04-03 19:52:21.006 ERROR 11347 --- [    Test worker] o.s.boot.SpringApplication               : Application run failed
+2024-04-03 23:01:06.181 ERROR 2268 --- [    Test worker] o.s.boot.SpringApplication               : Application run failed
 
 org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Invocation of init method failed; nested exception is javax.persistence.PersistenceException: [PersistenceUnit: default] Unable to build Hibernate SessionFactory; nested exception is org.hibernate.exception.JDBCConnectionException: Unable to open JDBC Connection for DDL execution
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1804) ~[spring-beans-5.3.29.jar:5.3.29]
@@ -866,14 +868,15 @@ Caused by: org.hibernate.exception.JDBCConnectionException: Unable to open JDBC 
 	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:113) ~[hibernate-core-5.6.15.Final.jar:5.6.15.Final]
 	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:99) ~[hibernate-core-5.6.15.Final.jar:5.6.15.Final]
 	at org.hibernate.resource.transaction.backend.jdbc.internal.DdlTransactionIsolatorNonJtaImpl.getIsolatedConnection(DdlTransactionIsolatorNonJtaImpl.java:71) ~[hibernate-core-5.6.15.Final.jar:5.6.15.Final]
-	at org.hibernate.tool.schema.internal.exec.ImprovedExtractionContextImpl.getJdbcConnection(ImprovedExtractionContextImpl.java:63) ~[hibernate-core-5.6.15.Final.jar:5.6.15.Final]
-	at org.hibernate.tool.schema.extract.spi.ExtractionContext.getQueryResults(ExtractionContext.java:43) ~[hibernate-core-5.6.15.Final.jar:5.6.15.Final]
-	at org.hibernate.tool.schema.extract.internal.SequenceInformationExtractorLegacyImpl.extractMetadata(SequenceInformationExtractorLegacyImpl.java:39) ~[hibernate-core-5.6.15.Final.jar:5.6.15.Final]
-	at org.hibernate.tool.schema.extract.internal.DatabaseInformationImpl.initializeSequences(DatabaseInformationImpl.java:66) ~[hibernate-core-5.6.15.Final.jar:5.6.15.Final]
-	at org.hibernate.tool.schema.extract.internal.DatabaseInformationImpl.&lt;init&gt;(DatabaseInformationImpl.java:60) ~[hibernate-core-5.6.15.Final.jar:5.6.15.Final]
-	at org.hibernate.tool.schema.internal.Helper.buildDatabaseInformation(Helper.java:183) ~[hibernate-core-5.6.15.Final.jar:5.6.15.Final]
-	at org.hibernate.tool.schema.internal.AbstractSchemaValidator.doValidation(AbstractSchemaValidator.java:68) ~[hibernate-core-5.6.15.Final.jar:5.6.15.Final]
-	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:204) ~[hibernate-core-5.6.15.Final.jar:5.6.15.Final]
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.jdbcStatement(GenerationTargetToDatabase.java:77) ~[hibernate-core-5.6.15.Final.jar:5.6.15.Final]
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:53) ~[hibernate-core-5.6.15.Final.jar:5.6.15.Final]
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.applySqlString(SchemaDropperImpl.java:387) ~[hibernate-core-5.6.15.Final.jar:5.6.15.Final]
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.applySqlStrings(SchemaDropperImpl.java:371) ~[hibernate-core-5.6.15.Final.jar:5.6.15.Final]
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.dropFromMetadata(SchemaDropperImpl.java:246) ~[hibernate-core-5.6.15.Final.jar:5.6.15.Final]
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.performDrop(SchemaDropperImpl.java:156) ~[hibernate-core-5.6.15.Final.jar:5.6.15.Final]
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.doDrop(SchemaDropperImpl.java:128) ~[hibernate-core-5.6.15.Final.jar:5.6.15.Final]
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.doDrop(SchemaDropperImpl.java:114) ~[hibernate-core-5.6.15.Final.jar:5.6.15.Final]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:157) ~[hibernate-core-5.6.15.Final.jar:5.6.15.Final]
 	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:85) ~[hibernate-core-5.6.15.Final.jar:5.6.15.Final]
 	at org.hibernate.internal.SessionFactoryImpl.&lt;init&gt;(SessionFactoryImpl.java:335) ~[hibernate-core-5.6.15.Final.jar:5.6.15.Final]
 	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:471) ~[hibernate-core-5.6.15.Final.jar:5.6.15.Final]
@@ -882,7 +885,7 @@ Caused by: org.hibernate.exception.JDBCConnectionException: Unable to open JDBC 
 	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:365) ~[spring-orm-5.3.29.jar:5.3.29]
 	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:409) ~[spring-orm-5.3.29.jar:5.3.29]
 	... 105 common frames omitted
-Caused by: org.postgresql.util.PSQLException: The connection attempt failed.
+Caused by: org.postgresql.util.PSQLException: El intento de conexión falló.
 	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:331) ~[postgresql-42.3.8.jar:42.3.8]
 	at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:49) ~[postgresql-42.3.8.jar:42.3.8]
 	at org.postgresql.jdbc.PgConnection.&lt;init&gt;(PgConnection.java:223) ~[postgresql-42.3.8.jar:42.3.8]
@@ -898,7 +901,7 @@ Caused by: org.postgresql.util.PSQLException: The connection attempt failed.
 	at org.hibernate.engine.jdbc.connections.internal.DatasourceConnectionProviderImpl.getConnection(DatasourceConnectionProviderImpl.java:122) ~[hibernate-core-5.6.15.Final.jar:5.6.15.Final]
 	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess.obtainConnection(JdbcEnvironmentInitiator.java:181) ~[hibernate-core-5.6.15.Final.jar:5.6.15.Final]
 	at org.hibernate.resource.transaction.backend.jdbc.internal.DdlTransactionIsolatorNonJtaImpl.getIsolatedConnection(DdlTransactionIsolatorNonJtaImpl.java:44) ~[hibernate-core-5.6.15.Final.jar:5.6.15.Final]
-	... 120 common frames omitted
+	... 121 common frames omitted
 Caused by: java.net.UnknownHostException: ${PROD_DB_HOST}
 	at java.base/sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:572) ~[na:na]
 	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:327) ~[na:na]
@@ -907,9 +910,9 @@ Caused by: java.net.UnknownHostException: ${PROD_DB_HOST}
 	at org.postgresql.core.PGStream.&lt;init&gt;(PGStream.java:98) ~[postgresql-42.3.8.jar:42.3.8]
 	at org.postgresql.core.v3.ConnectionFactoryImpl.tryConnect(ConnectionFactoryImpl.java:109) ~[postgresql-42.3.8.jar:42.3.8]
 	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:235) ~[postgresql-42.3.8.jar:42.3.8]
-	... 134 common frames omitted
+	... 135 common frames omitted
 
-2024-04-03 19:52:21.012 ERROR 11347 --- [    Test worker] o.s.test.context.TestContextManager      : Caught exception while allowing TestExecutionListener [org.springframework.test.context.web.ServletTestExecutionListener@610db97e] to prepare test instance [com.manahuia.manahuia.ManahuiaApplicationTests@24010875]
+2024-04-03 23:01:06.200 ERROR 2268 --- [    Test worker] o.s.test.context.TestContextManager      : Caught exception while allowing TestExecutionListener [org.springframework.test.context.web.ServletTestExecutionListener@10567255] to prepare test instance [com.manahuia.manahuia.ManahuiaApplicationTests@43e7f104]
 
 java.lang.IllegalStateException: Failed to load ApplicationContext
 	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:98) ~[spring-test-5.3.29.jar:5.3.29]
@@ -1030,14 +1033,15 @@ Caused by: org.hibernate.exception.JDBCConnectionException: Unable to open JDBC 
 	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:113) ~[hibernate-core-5.6.15.Final.jar:5.6.15.Final]
 	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:99) ~[hibernate-core-5.6.15.Final.jar:5.6.15.Final]
 	at org.hibernate.resource.transaction.backend.jdbc.internal.DdlTransactionIsolatorNonJtaImpl.getIsolatedConnection(DdlTransactionIsolatorNonJtaImpl.java:71) ~[hibernate-core-5.6.15.Final.jar:5.6.15.Final]
-	at org.hibernate.tool.schema.internal.exec.ImprovedExtractionContextImpl.getJdbcConnection(ImprovedExtractionContextImpl.java:63) ~[hibernate-core-5.6.15.Final.jar:5.6.15.Final]
-	at org.hibernate.tool.schema.extract.spi.ExtractionContext.getQueryResults(ExtractionContext.java:43) ~[hibernate-core-5.6.15.Final.jar:5.6.15.Final]
-	at org.hibernate.tool.schema.extract.internal.SequenceInformationExtractorLegacyImpl.extractMetadata(SequenceInformationExtractorLegacyImpl.java:39) ~[hibernate-core-5.6.15.Final.jar:5.6.15.Final]
-	at org.hibernate.tool.schema.extract.internal.DatabaseInformationImpl.initializeSequences(DatabaseInformationImpl.java:66) ~[hibernate-core-5.6.15.Final.jar:5.6.15.Final]
-	at org.hibernate.tool.schema.extract.internal.DatabaseInformationImpl.&lt;init&gt;(DatabaseInformationImpl.java:60) ~[hibernate-core-5.6.15.Final.jar:5.6.15.Final]
-	at org.hibernate.tool.schema.internal.Helper.buildDatabaseInformation(Helper.java:183) ~[hibernate-core-5.6.15.Final.jar:5.6.15.Final]
-	at org.hibernate.tool.schema.internal.AbstractSchemaValidator.doValidation(AbstractSchemaValidator.java:68) ~[hibernate-core-5.6.15.Final.jar:5.6.15.Final]
-	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:204) ~[hibernate-core-5.6.15.Final.jar:5.6.15.Final]
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.jdbcStatement(GenerationTargetToDatabase.java:77) ~[hibernate-core-5.6.15.Final.jar:5.6.15.Final]
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:53) ~[hibernate-core-5.6.15.Final.jar:5.6.15.Final]
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.applySqlString(SchemaDropperImpl.java:387) ~[hibernate-core-5.6.15.Final.jar:5.6.15.Final]
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.applySqlStrings(SchemaDropperImpl.java:371) ~[hibernate-core-5.6.15.Final.jar:5.6.15.Final]
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.dropFromMetadata(SchemaDropperImpl.java:246) ~[hibernate-core-5.6.15.Final.jar:5.6.15.Final]
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.performDrop(SchemaDropperImpl.java:156) ~[hibernate-core-5.6.15.Final.jar:5.6.15.Final]
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.doDrop(SchemaDropperImpl.java:128) ~[hibernate-core-5.6.15.Final.jar:5.6.15.Final]
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.doDrop(SchemaDropperImpl.java:114) ~[hibernate-core-5.6.15.Final.jar:5.6.15.Final]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:157) ~[hibernate-core-5.6.15.Final.jar:5.6.15.Final]
 	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:85) ~[hibernate-core-5.6.15.Final.jar:5.6.15.Final]
 	at org.hibernate.internal.SessionFactoryImpl.&lt;init&gt;(SessionFactoryImpl.java:335) ~[hibernate-core-5.6.15.Final.jar:5.6.15.Final]
 	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:471) ~[hibernate-core-5.6.15.Final.jar:5.6.15.Final]
@@ -1046,7 +1050,7 @@ Caused by: org.hibernate.exception.JDBCConnectionException: Unable to open JDBC 
 	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:365) ~[spring-orm-5.3.29.jar:5.3.29]
 	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:409) ~[spring-orm-5.3.29.jar:5.3.29]
 	... 105 common frames omitted
-Caused by: org.postgresql.util.PSQLException: The connection attempt failed.
+Caused by: org.postgresql.util.PSQLException: El intento de conexión falló.
 	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:331) ~[postgresql-42.3.8.jar:42.3.8]
 	at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:49) ~[postgresql-42.3.8.jar:42.3.8]
 	at org.postgresql.jdbc.PgConnection.&lt;init&gt;(PgConnection.java:223) ~[postgresql-42.3.8.jar:42.3.8]
@@ -1062,7 +1066,7 @@ Caused by: org.postgresql.util.PSQLException: The connection attempt failed.
 	at org.hibernate.engine.jdbc.connections.internal.DatasourceConnectionProviderImpl.getConnection(DatasourceConnectionProviderImpl.java:122) ~[hibernate-core-5.6.15.Final.jar:5.6.15.Final]
 	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess.obtainConnection(JdbcEnvironmentInitiator.java:181) ~[hibernate-core-5.6.15.Final.jar:5.6.15.Final]
 	at org.hibernate.resource.transaction.backend.jdbc.internal.DdlTransactionIsolatorNonJtaImpl.getIsolatedConnection(DdlTransactionIsolatorNonJtaImpl.java:44) ~[hibernate-core-5.6.15.Final.jar:5.6.15.Final]
-	... 120 common frames omitted
+	... 121 common frames omitted
 Caused by: java.net.UnknownHostException: ${PROD_DB_HOST}
 	at java.base/sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:572) ~[na:na]
 	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:327) ~[na:na]
@@ -1071,7 +1075,7 @@ Caused by: java.net.UnknownHostException: ${PROD_DB_HOST}
 	at org.postgresql.core.PGStream.&lt;init&gt;(PGStream.java:98) ~[postgresql-42.3.8.jar:42.3.8]
 	at org.postgresql.core.v3.ConnectionFactoryImpl.tryConnect(ConnectionFactoryImpl.java:109) ~[postgresql-42.3.8.jar:42.3.8]
 	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:235) ~[postgresql-42.3.8.jar:42.3.8]
-	... 134 common frames omitted
+	... 135 common frames omitted
 
 </pre>
 </span>
@@ -1084,7 +1088,7 @@ Caused by: java.net.UnknownHostException: ${PROD_DB_HOST}
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="http://www.gradle.org">Gradle 8.6</a> at Apr 3, 2024, 7:52:21 PM</p>
+<a href="http://www.gradle.org">Gradle 8.6</a> at 3 abr. 2024 23:01:06</p>
 </div>
 </div>
 </body>
