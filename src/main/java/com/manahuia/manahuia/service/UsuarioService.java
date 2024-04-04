@@ -27,11 +27,27 @@ public class UsuarioService {
 		return usuarioRepository.findAll();
 	}
 	
-	public Usuario getUsuario(Long usuarioId) {
+	/*public Usuario getId(Long usuarioId) {
 		return usuarioRepository.findById(usuarioId).orElseThrow(
 				()->new IllegalArgumentException("El usuario con el id ["+usuarioId+"] no existe"));
+	}*/
+	
+	public Usuario getUsuarioByCorreo(String email) {
+		return usuarioRepository.findByCorreo(email).orElseThrow(
+				()->new IllegalArgumentException("El usuario con el correo ["+email+"] no existe"));
+	
 	}
 		
+	public Long getTipoUsuario(String email) {
+		Optional <Usuario> tempUsuario=usuarioRepository.findByCorreo(email);
+		if(tempUsuario.isPresent()){
+			return tempUsuario.get().getTipo_usuario();
+		 }else{
+		 		System.out.println("El usuario con el email ["+email+"]");
+		 }
+		return Long.valueOf(2);	
+	}
+	
 	public Usuario addUsuario(Usuario usuario) {
 		Usuario tempUsuario=null;
 		if(usuarioRepository.findByCorreo(usuario.getCorreo()).isEmpty()){

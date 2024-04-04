@@ -17,6 +17,7 @@ import com.manahuia.manahuia.model.Usuario;
 import com.manahuia.manahuia.service.UsuarioService;
 
 @CrossOrigin(origins = {"http://localhost:5500", "http://127.0.0.1:5500","https://lizeth9797.github.io/manahuia/"})
+//@CrossOrigin(origins="*")
 @RestController
 @RequestMapping(path="/api/usuarios/") //http://localhost:8080/api/usuario/
 public class UsuarioController {
@@ -34,10 +35,17 @@ public class UsuarioController {
 	}
 	
 	//Get by ID
-	@GetMapping (path= "{usuarioId}")
-	public Usuario getUsuario(@PathVariable("usuarioId") Long usuarioId) {
-		return usuarioService.getUsuario(usuarioId);
+	/*@GetMapping (path= "{usuarioId}")
+	public Usuario getId(@PathVariable("usuarioId") Long usuarioId) {
+		return usuarioService.getId(usuarioId);
+	}*/
+	
+	//Get by Correo
+	@GetMapping (path= "{email}")
+	public Usuario getUsuarioByCorreo(@PathVariable("email") String email) {
+		return usuarioService.getUsuarioByCorreo(email);
 	}
+	
 	
 	//POST 
 	@PostMapping

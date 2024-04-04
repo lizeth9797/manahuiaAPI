@@ -16,6 +16,7 @@ import com.manahuia.manahuia.model.Pedido;
 import com.manahuia.manahuia.service.PedidoService;
 
 @CrossOrigin(origins = {"http://localhost:5500", "http://127.0.0.1:5500","https://lizeth9797.github.io/manahuia/"})
+//@CrossOrigin(origins="*")
 @RestController
 @RequestMapping(path="/api/pedido/") //http://localhost:8080/api/pedido/
 public class PedidoController {

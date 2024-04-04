@@ -18,6 +18,8 @@ import com.manahuia.manahuia.config.JwtFilter;
 import com.manahuia.manahuia.dto.Token;
 
 @CrossOrigin(origins = {"http://localhost:5500", "http://127.0.0.1:5500","https://lizeth9797.github.io/manahuia/"})
+//@CrossOrigin(origins="*")
+
 @RestController
 @RequestMapping(path="/api/login/") //http://localhost:8080/api/login/
 public class LoginController {
@@ -37,11 +39,12 @@ public class LoginController {
 	public Token loginUser(@RequestBody Usuario usuario) throws ServletException {
 		if(usuarioService.validateUser(usuario)) {
 			System.out.println("Usuario válido "+usuario.getCorreo());
-			return new Token(generateToken(usuario.getCorreo()));
+			return new Token(generateToken(usuario.getCorreo()),usuarioService.getTipoUsuario(usuario.getCorreo()));
 		}//if
 		throw new ServletException("Nombre de usuario o contraseña incorrectos "+usuario.getCorreo());
 	}
 	
+
 	
 	private String generateToken(String username) {
 		Calendar calendar = Calendar.getInstance();//Fecha hora actual
