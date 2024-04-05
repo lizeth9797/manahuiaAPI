@@ -16,7 +16,7 @@ import com.manahuia.manahuia.dto.ChangePassword;
 import com.manahuia.manahuia.model.Usuario;
 import com.manahuia.manahuia.service.UsuarioService;
 
-@CrossOrigin(origins = {"http://localhost:5500", "http://127.0.0.1:5500","https://lizeth9797.github.io/manahuia/"})
+@CrossOrigin(origins = {"http://localhost:5500", "http://127.0.0.1:5500","https://lizeth9797.github.io/manahuia/","https://lizeth9797.github.io/"})
 //@CrossOrigin(origins="*")
 @RestController
 @RequestMapping(path="/api/usuarios/") //http://localhost:8080/api/usuario/
